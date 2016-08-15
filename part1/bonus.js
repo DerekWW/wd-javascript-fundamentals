@@ -40,7 +40,19 @@ It'll take a few steps to solve this cipher. Have fun!
 //
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw
 function caesarShiftInt(integer) {
-  // YOUR CODE HERE
+  if (integer < 97) {
+    throw 'Error: integer too low';
+  }
+  if (integer > 122) {
+    throw 'Error: integer too high';
+  }
+  if (integer + 13 > 122) {
+    return (96 + ((integer + 13) - 122));
+    // wrap
+  }else {
+    return integer + 13;
+    // return int + 13
+  }
 }
 
 // Define a function named caesarShiftChar that takes a one argument
@@ -57,6 +69,15 @@ function caesarShiftInt(integer) {
 //
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/fromCharCode
 
+function caesarShiftChar(char) {
+  var returnValue;
+  if (char.charCodeAt(0) < 65 || char.charCodeAt(0) > 122 || char.charCodeAt(0) > 90  && char.charCodeAt(0) < 97 )  {
+    return char;
+  }else {
+    return String.fromCharCode(caesarShiftInt(char.toLowerCase().charCodeAt(0)))
+    }
+
+}
 
 
 
@@ -67,7 +88,13 @@ function caesarShiftInt(integer) {
 // 'Hello, there!', then return 'uryyb, gurer!'.
 //
 // HINT: You'll need a loop for this.
-
+function encodeMessage(message) {
+  var returnString = '';
+  for (var i = 0; i < message.length; i++) {
+    returnString += caesarShiftChar(message[i]);
+  }
+  return returnString;
+}
 
 
 
@@ -78,3 +105,6 @@ function caesarShiftInt(integer) {
 // 'uryyb, gurer!', then return 'Hello, there!'.
 //
 // HINT: Is there a way to use the encodeMessage() function?
+function decodeMessage(message) {
+  return encodeMessage(message);
+}

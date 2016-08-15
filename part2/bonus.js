@@ -6,7 +6,11 @@
 //
 // See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments
 function bigSum() {
-  // YOUR CODE HERE
+  var sum = 0;
+  for (var i = 0; i < arguments.length; i++) {
+    sum += arguments[i];
+  }
+  return sum;
 }
 
 // Define a function named pluck that takes in two arguments.
@@ -23,7 +27,13 @@ function bigSum() {
 //    ]
 //
 // and the key 'name', then return ['moe', 'larry', 'curly'].
-
+function pluck(arr, key) {
+  var nameArray = [];
+  for (var i = 0; i < arr.length; i++) {
+    nameArray.push(arr[i]['name']);
+  }
+  return nameArray;
+}
 
 
 
